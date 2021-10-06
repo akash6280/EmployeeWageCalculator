@@ -57,3 +57,8 @@ function mapDayWithWage(dailyWage) {
 let mapDayWithWageArray = employeeDailyWageArray.map(mapDayWithWage);
 console.log("Daily Wage Map", mapDayWithWageArray);
 
+function fulltimeWage(dailyWage){
+    return dailyWage.includes("160");
+}
+let fullDayWageArray=mapDayWithWageArray.filter(fulltimeWage);
+console.log(fullDayWageArray) 
