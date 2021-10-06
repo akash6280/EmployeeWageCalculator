@@ -35,3 +35,11 @@ while(totalEmployeeHrs <= MAXIMUM_HRS_IN_MONTH && totalWorkingDays < NUMBER_OF_W
 }
 let employeeWage = calculateDailyWage(totalEmployeeHrs);
 console.log("Total days:"+totalWorkingDays+" Total Hrs :"+ totalEmployeeHrs+" Employee Wage: "+employeeWage); 
+
+let totalEmployeeWage = 0;
+function sum(dailyWage){
+    totalEmployeeWage += dailyWage;
+}
+employeeDailyWageArray.forEach(sum);
+console.log("Total days:"+totalWorkingDays+" Total Hrs :"+ totalEmployeeHrs+" Employee Wage: "+totalEmployeeWage); 
+
