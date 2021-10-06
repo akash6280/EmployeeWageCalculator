@@ -26,13 +26,22 @@ function getWorkingHours(employeeCheck){
 let totalEmployeeHrs=0;
 let totalWorkingDays=0;
 let employeeHrs=0;
+let employeeDailyWageMap= new Map();
 while(totalEmployeeHrs <= MAXIMUM_HRS_IN_MONTH && totalWorkingDays < NUMBER_OF_WORKING_DAYS ){
     totalWorkingDays++;
     let employeeCheck = Math.floor(Math.random() * 10) % 3;
     employeeHrs=getWorkingHours(employeeCheck);
     totalEmployeeHrs+=employeeHrs;
     employeeDailyWageArray.push(calculateDailyWage(employeeHrs));
+    employeeDailyWageMap.set(totalWorkingDays,calculateDailyWage(employeeHrs));
 }
+
+console.log(employeeDailyWageMap);
+function totalWages(totalWage,dailyWage){
+    return totalWage+dailyWage;
+}
+console.log("Employee wage for total hours"+Array.from(employeeDailyWageMap.values()).reduce(totalWages,0));
+
 let employeeWage = calculateDailyWage(totalEmployeeHrs);
 console.log("Total days:"+totalWorkingDays+" Total Hrs :"+ totalEmployeeHrs+" Employee Wage: "+employeeWage); 
 
