@@ -27,6 +27,7 @@ let totalEmployeeHrs=0;
 let totalWorkingDays=0;
 let employeeHrs=0;
 let employeeDailyWageMap= new Map();
+let employeeDailyHrsMap = new Map();
 while(totalEmployeeHrs <= MAXIMUM_HRS_IN_MONTH && totalWorkingDays < NUMBER_OF_WORKING_DAYS ){
     totalWorkingDays++;
     let employeeCheck = Math.floor(Math.random() * 10) % 3;
@@ -34,6 +35,7 @@ while(totalEmployeeHrs <= MAXIMUM_HRS_IN_MONTH && totalWorkingDays < NUMBER_OF_W
     totalEmployeeHrs+=employeeHrs;
     employeeDailyWageArray.push(calculateDailyWage(employeeHrs));
     employeeDailyWageMap.set(totalWorkingDays,calculateDailyWage(employeeHrs));
+    employeeDailyHrsMap.set(totalWorkingDays,employeeHrs);
 }
 
 console.log(employeeDailyWageMap);
@@ -92,3 +94,12 @@ function totalDaysWorked(numberOfDays,dailyWage){
     return numberOfDays;
 }
 console.log("Number of days employee worked: "+employeeDailyWageArray.reduce(totalDaysWorked,0)); 
+
+const findTotal=(totalValue,dailyValue)=>{
+                return totalValue+dailyValue;
+                }
+let count=0;
+let totalHours=Array.from(employeeDailyHrsMap.values()).reduce(findTotal,0);
+let totalSalary=employeeDailyWageArray.filter(dailyWage=>dailyWage>0)
+                                      .reduce(findTotal,0);
+console.log("Employee wage with Arrow: "+"Total hours: "+totalHours+" Total wages: "+totalSalary);
