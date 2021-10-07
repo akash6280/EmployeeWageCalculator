@@ -22,7 +22,7 @@ function getWorkingHours(employeeCheck){
             return 0;
     }
 }
-
+{
 let totalEmployeeHrs=0;
 let totalWorkingDays=0;
 let employeeHrs=0;
@@ -116,3 +116,27 @@ employeeDailyHrsMap.forEach((value,key,map) => {
 console.log("Full working days: "+fullWorkingDays);
 console.log("Part working days: "+partWorkingDays);
 console.log("Non working days: "+nonWorkingDays);
+}
+{
+let totalEmployeeHrs = 0;
+let totalWorkingDays = 0;
+let employeeDailyHrsAndWageArray = new Array();
+while(totalEmployeeHrs <= MAXIMUM_HRS_IN_MONTH && totalWorkingDays < NUMBER_OF_WORKING_DAYS) {
+    totalWorkingDays++;
+    let employeeCheck = Math.floor(Math.random() * 10) % 3;
+    let employeeHrs = getWorkingHours(employeeCheck);
+    totalEmployeeHrs += employeeHrs;
+    employeeDailyHrsAndWageArray.push(
+        {
+            dayNumber:totalWorkingDays,
+            dailyHours:employeeHrs,
+            dailyWage:calculateDailyWage(employeeHrs),
+            toString(){
+                return '\nDay' + this.dayNumber + ' => Working Hours is ' + this.dailyHours + 
+                    ' And Wage Earned = ' + this.dailyWage
+            },
+        }
+    );
+}
+console.log("Showing daily hours worked and wage earned: "+employeeDailyHrsAndWageArray);
+}
